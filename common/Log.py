@@ -15,7 +15,8 @@ class Log:
         if not os.path.exists(resultPath):
             os.mkdir(resultPath)
         # defined test result file name by localtime
-        logPath = os.path.join(resultPath, str(datetime.now().strftime("%Y%m%d%H%M%S")))
+        # logPath = os.path.join(resultPath, str(datetime.now().strftime("%Y%m%d%H%M%S")))
+        logPath = os.path.join(resultPath, str(datetime.now().strftime("%Y%m%d")))
         # create test result file if it doesn't exist
         if not os.path.exists(logPath):
             os.mkdir(logPath)
