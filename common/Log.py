@@ -23,7 +23,7 @@ class Log:
         # defined logger
         self.logger = logging.getLogger()
         # defined log level
-        self.logger.setLevel(logging.INFO)
+        self.logger.setLevel(logging.DEBUG)
 
         # defined handler
         handler = logging.FileHandler(os.path.join(logPath, "output.log"))

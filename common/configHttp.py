@@ -1,11 +1,14 @@
 #! /usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import requests, json
+import json
+import requests
 import readConfig as readConfig
 # from common.Log import MyLog as Log
 from Log import MyLog as Log
+
 localReadConfig = readConfig.ReadConfig()
+
 
 class ConfigHttp:
     def __init__(self):
@@ -41,28 +44,30 @@ class ConfigHttp:
     def set_files(self, file):
         self.files = file
 
-    def set_cookies(self,cookie):
+    def set_cookies(self, cookie):
         self.cookies = cookie
 
     # defined http get method
     def get(self):
         try:
-            response = requests.get(self.url, params=self.params, headers=self.headers, cookies=self.cookies, timeout=float(timeout))
+            response = requests.get(url=self.url, params=self.params, headers=self.headers, cookies=self.cookies,
+                                    timeout=float(timeout))
             # response.raise_for_status()
             return response
         except Exception as e:
             self.logger.error(str(e.message))
             # print(e.message)
-            response = {"msg":str(e.message)}
+            response = {"msg": str(e.message)}
             return json.dumps(response)
-
 
     # defined http post method
     def post(self):
         try:
-            response = requests.post(self.url, headers=self.headers, data=self.data, cookies=self.cookies, files=self.files, timeout=float(timeout))
+            response = requests.post(url=self.url, headers=self.headers, data=self.data, cookies=self.cookies,
+                                     files=self.files, timeout=float(timeout))
             # response.raise_for_status()
             return response
         except Exception as e:
             self.logger.error(str(e.message))
-            return str(e.message)
+            response = {"msg": str(e.message)}
+            return json.dumps(response)
